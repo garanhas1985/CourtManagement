@@ -1,15 +1,81 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+skinparam linetype polyline
+left to right direction
+hide empty methods
+hide empty members
+title "Domain Diagram"
 
-autonumber
+' Entities
 
-== Initialization ==
+entity Sport {
+  name
+  description
+}
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+entity Club {
+clubName
+location
+phoneNumber
+clubEmail
+workingHours
+webSite
+}
 
-== Repetition ==
+entity Court {
+courtNumber
+description
+hourlyFee
+surfaceType
+indoorOutdoor
+lightningAvailable
+}
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+entity Client {
+name
+fiscalID
+mail
+phoneNumber
+address
+registerDate
+
+}
+
+entity Employee {
+name
+role
+status
+workingHours
+fiscalID
+mail
+clubEmail
+phoneNumber
+address
+}
+
+entity Booking{
+date
+hour
+duration
+status
+createdAt
+canceledAt
+}
+
+entity Payment{
+method
+status
+price
+timeStamp
+paymentReference
+}
+
+Sport "*" --> "*" Club
+Employee "1" --> "1" Club
+Court "1" --> "1" Club
+Booking "1" --> "1" Court
+Booking "1" --> "1" Client
+Booking "1" --> "1" Payment
+Court "1" --> "1" Sport
+
+
 @enduml
